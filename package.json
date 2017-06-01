@@ -1,0 +1,24 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "View, add, edit, remove tasks in list.",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scottfli03/TodoList.git"
+  },
+  "keywords": [
+    "angularjs",
+    "list",
+    "tabs"
+  ],
+  "author": "Scott Flischel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/scottfli03/TodoList/issues"
+  },
+  "homepage": "https://github.com/scottfli03/TodoList#readme"
+}
