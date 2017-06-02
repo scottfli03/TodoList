@@ -1,8 +1,11 @@
 .sub_list {
+	margin-bottom: 10px;
 	padding-left: 1em;
 	text-align: left;
 }
 #list_title {
+	margin-top: 10px;
+	padding-top: 10px;
 	font-weight: bold;
 	font-family: 'arial';
 }
@@ -10,12 +13,18 @@ ul {
 	list-style-type:  none;
 }
 #not_h1 {
+	margin-bottom: 0px;
+	padding-bottom: .05em;
 	text-align: center;
 	font-family: 'arial';
 	font-size: 200%;
 }
-#list {
+#lists {
 	padding-left: 0;
+	margin-top: 0;
+}
+#list {
+	padding-left: 1em;
 }
 body {
 	margin-left: 10%;
