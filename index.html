@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
 <body>
 
-<div ng-app="">
-  <p>Name : <input type="text" ng-model="name"></p>
-  <h1>Hello {{name}}</h1>
-</div>
-
+<div id="not_h1">Things to bring to College</div>
+<ul id="list">
+	<li><label id="list_title">Bedding</label>
+		<ul class="sub_list">
+			<li>
+				<input type="checkbox" id="sub1_1">
+				<label>A pillow</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub1_2">
+				<label>A mattress pad</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub1_3">
+				<label>One or two twin-sized sheets and pillow cases</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub1_1">
+				<label>One or two blankets or comforters</label>
+			</li>
+		</ul>
+	</li>
+	<li><label id="list_title">Shower/Bath Items</label>
+		<ul class="sub_list">
+			<li>
+				<input type="checkbox" id="sub2_1">
+				<label>Shower Caddy</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub2_2">
+				<label>Bathrobe</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub2_3">
+				<label>Shower shoes</label>
+			</li>
+			<li>
+				<input type="checkbox" id="sub2_4">
+				<label>Bath towels</label>
+			</li>
+		</ul>
+	</li>
+</ul>
 </body>
 </html>
