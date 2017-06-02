@@ -1,0 +1,23 @@
+.sub_list {
+	padding-left: 1em;
+	text-align: left;
+}
+#list_title {
+	font-weight: bold;
+	font-family: 'arial';
+}
+ul {
+	list-style-type:  none;
+}
+#not_h1 {
+	text-align: center;
+	font-family: 'arial';
+	font-size: 200%;
+}
+#list {
+	padding-left: 0;
+}
+body {
+	margin-left: 10%;
+	margin-right: 10%;
+}
