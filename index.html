@@ -9,19 +9,29 @@
 
 <!-- build template and directive to display header -->
 <div id="not_h1">Things to bring to College</div>
-<div ng-controller="ListController as aList">
+<div ng-controller="ListSetController as listSet">
 
 	<!-- build template and directive to display List Sets -->
-	<ul id="lists" ng-repeat="list in aList.lists">
-		<li><label id="list_title">{{list.title}}</label>
-			<ul id = "list" ng-repeat="item in list.listItems">
-				<li>
-					<input type="checkbox" id="sub1_1">
-					<label>{{item.title}}</label>
-				</li>
-			</ul>
-		</li>
-	</ul>
+	<form name="listSetForm">
+		<ul id="lists" ng-repeat="list in listSet.lists">
+			<li><label id="list_title">{{list.title}}</label>
+				<table>
+					<tr>
+						<th>Select</th>
+						<th>Title</th>
+						<th>Description</th>
+					</tr>
+					<tr id ="list" ng-repeat="item in list.listItems">
+						<td class="checkCol"><input type="checkbox" id="lItem"></td>
+						<div>
+							<td><label id="cellListData">{{item.title}}</label></td>
+							<td><label id="cellListData">{{item.description}}</label></td>
+						</div>
+					</tr>
+				</table>
+			</li>
+		</ul>
+	</form>
 </div>
 </body>
 </html>

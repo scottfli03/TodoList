@@ -5,7 +5,6 @@
 }
 #list_title {
 	margin-top: 10px;
-	padding-top: 10px;
 	font-weight: bold;
 	font-family: 'arial';
 }
@@ -29,4 +28,25 @@ ul {
 body {
 	margin-left: 10%;
 	margin-right: 10%;
+}
+table, td, th {
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+	margin-top:3px;
+	margin-bottom: 20px;
+}
+td, th {
+	padding: 10px 5px 10px 5px;
+}
+td.checkCol {
+	text-align: center;
+	vertical-align: center;
+}
+th {
+	text-align: center;
+	vertical-align: center;
+}
+#cellListData {
+	padding: 5px 5px;
 }
