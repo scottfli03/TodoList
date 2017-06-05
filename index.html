@@ -3,18 +3,16 @@
 <head>
 	<link rel="stylesheet" href="styles.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<script src="app.js"></script>
+	<script src="app.js"></script>	
 </head>
 <body ng-app="myApp">
 
 <!-- build template and directive to display header -->
 <div id="not_h1">Things to bring to College</div>
-<div ng-controller="ListSetController as listSet">
-
-	<!-- build template and directive to display List Sets -->
-	
-	<ul id="lists" ng-repeat="list in listSet.lists">
-		<form name="listSetForm" novalidate>
+<div ng-controller="ListSetController as listSetCtrl">
+	<!-- build template and directive to display List Sets -->	
+	<ul id="lists" ng-repeat="list in listSetCtrl.lists">
+		<form name="listSetForm" novalidate id= "listsForm">
 			<li id="titleListItem"><label id="list_title">{{list.title}}</label>
 				<table class="listTable">
 					<tr class="listTR">
@@ -33,17 +31,16 @@
 				<tr>
 					<th class="formTH">Title</th>
 					<th class="formTH">Description</th>
-					<th class="formTH">{{list.id}}</th>
+					<th class="formTH"></th>
 				</tr>
 				<tr>
-					<td class="formTD"><input type="text" ng-model:"item.title" required></td>
-					<td class="formTD"><input type="text" ng-model:"item.description"required></td>
-					<td class="formTD"><input type="submit" ng-click="addListItem(list.id, item)" value="Add item" /></td>
+					<td class="formTD"><input type="text" ng-model:"listSetCtrl.newItem.title" required></td>
+					<td class="formTD"><input type="text" ng-model:"listSetCtrl.newItem.description" required></td>
+					<td class="formTD"><input type="submit" ng-click="listSetCtrl.addListItem(list.title)" value="Add item" /></td>
 				</tr>
 			</table>
 		</form>		
-	</ul>
-	
+	</ul>	
 </div>
 </body>
 </html>

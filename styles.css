@@ -28,6 +28,7 @@ ul {
 body {
 	margin-left: 10%;
 	margin-right: 10%;
+	background-color: #f9f9de;
 }
 table.listTable, tr.listTR, th.listTH, td.listTD {
 	border-style: solid;
@@ -35,6 +36,7 @@ table.listTable, tr.listTR, th.listTH, td.listTD {
 	border-collapse: collapse;
 	margin-top:3px;
 	margin-bottom: 5px;
+	background-color: #d6f9f5;
 }
 td.listTD, th.listTH {
 	padding: 10px 5px 10px 5px;
