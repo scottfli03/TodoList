@@ -15,6 +15,24 @@
 	    
 
 	app.controller("ListSetController", function() {
-		this.lists = sampleLists;	
+		this.lists = sampleLists;
+
+		this.addList = function(list) {
+			this.lists.push(list);
+		};
+
+		this.addListItem = function(listID, item) {
+			var maxID = 1,
+				i;
+			for (i = 0; i < this.lists[listID].length; i++) {
+				if (this.lists[listID].listItems[i].id > maxID) {
+					maxID = this.lists[listID].listItems[i].id;
+				}
+			}
+			item.id = maxID;
+			item.completed = false;
+			this.lists[listID].listItems.push(item);
+
+		}	
 	});
 })();
