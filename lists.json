@@ -1,5 +1,5 @@
 [
-	{ "title":"Hygene Products", 
+	{"title":"Hygiene Products", 
 	"listItems": [
 	  	{"title": "Soap", 
 	  	"description": "Kind that smells good.", 
@@ -10,7 +10,7 @@
 		{"title": "Shaving cream", 
 		"description": "Sensitive Skin", 
 		"completed": false}]},
-	{ "title": "School Supplies",
+	{"title": "School Supplies",
 	"listItems": [
 	  	{"title": "Computer", 
 	  	"description": "Laptop", 

@@ -12,7 +12,7 @@
 <div ng-controller="ListSetController as listSetCtrl">
 	<!-- build template and directive to display List Sets -->	
 	<ul id="lists" ng-repeat="list in listSetCtrl.lists">
-		<form name="listSetForm" novalidate id= "listsForm">
+		<form name="listSetForm{{$index}}" novalidate id= "listsForm">
 			<li id="titleListItem"><label id="list_title">{{list.title}}</label>
 				<table class="listTable">
 					<tr class="listTR">
@@ -21,7 +21,7 @@
 						<th class="listTH">Description</th>
 					</tr>
 					<tr id ="list" ng-repeat="item in list.listItems">
-						<td class="checkCol"><input type="checkbox" id="lItem"></td>
+						<td class="checkCol"><input type="checkbox" id="completedChk"></td>
 						<td class="listTD"><label id="cellListData">{{item.title}}</label></td>
 						<td class="listTD"><label id="cellListData">{{item.description}}</label></td>
 					</tr>
@@ -34,13 +34,17 @@
 					<th class="formTH"></th>
 				</tr>
 				<tr>
-					<td class="formTD"><input type="text" ng-model:"listSetCtrl.newItem.title" required></td>
-					<td class="formTD"><input type="text" ng-model:"listSetCtrl.newItem.description" required></td>
-					<td class="formTD"><input type="submit" ng-click="listSetCtrl.addListItem(list.title)" value="Add item" /></td>
+					<td class="formTD"><input type="text" ng-model="newItem.title" required></td>
+					<td class="formTD"><input type="text" ng-model="newItem.description" required></td>
+					<td class="formTD"><input type="submit" ng-click="listSetCtrl.addListItem(newItem, list)" value="Add item" /></td>
 				</tr>
 			</table>
-		</form>		
-	</ul>	
+		</form>			
+	</ul>
+	<form name="newListForm" >
+		<label>New List Title: </label><input type="text" ng-model="title" required/ >
+		<input type="submit" ng-click="listSetCtrl.addList(title)" value="new list"/ >
+	</form>	
 </div>
 </body>
 </html>

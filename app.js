@@ -2,22 +2,23 @@
 
 	app.controller("ListSetController", ['$http', function($http) {
 		var self = this;
-		var newItem = {};
-		self.newItem = newItem;
-		try {
-			$http.get('lists.json').then(function(res){
-          		self.lists = res.data;                
-        		}
-        	);
-		} 
-		catch(err) {
-			console.log(err);
-		}
+		$http.get('lists.json').then(function(res){
+      		self.lists = res.data;                
+    		}
+    	);
 
-		this.addListItem = function(list) {
+		this.addListItem = function(newItem, list) {
+			console.log(self);
+			console.log(newItem);
 			console.log(list);
-			self.newItem.completed = false;
-			list.listItems.push(self.newItem);
-		};	
+			list.listItems.push(newItem);
+		};
+
+		this.addList = function(title) {
+			console.log(title);
+			var newList = {title: title, listItems:[]};
+			self.lists.push(newList);
+			console.log(self.lists);
+		}	
 	}]);
 })();
