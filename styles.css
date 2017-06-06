@@ -1,0 +1,64 @@
+.sub_list {
+	margin-bottom: 10px;
+	padding-left: 1em;
+	text-align: left;
+}
+#list_title {
+	margin-top: 10px;
+	font-weight: bold;
+	font-family: 'arial';
+}
+ul {
+	list-style-type:  none;
+}
+#not_h1 {
+	margin-bottom: 0px;
+	padding-bottom: .05em;
+	text-align: center;
+	font-family: 'arial';
+	font-size: 200%;
+}
+#lists {
+	padding-left: 0;
+	margin-top: 0;
+}
+#list {
+	padding-left: 1em;
+}
+body {
+	margin-left: 10%;
+	margin-right: 10%;
+	background-color: #f9f9de;
+}
+table.listTable, tr.listTR, th.listTH, td.listTD {
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+	margin-top:3px;
+	margin-bottom: 5px;
+	background-color: #d6f9f5;
+}
+td.listTD, th.listTH {
+	padding: 10px 5px 10px 5px;
+}
+td.checkCol {
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+	text-align: center;
+	vertical-align: center;
+}
+th.listTH {
+	text-align: center;
+	vertical-align: center;
+}
+th.formTH {
+	text-align: left;
+}
+table.formTable {
+	margin-bottom: 20px;
+}
+#cellListData {
+	padding: 5px 5px;
+}
+

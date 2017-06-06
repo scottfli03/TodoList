@@ -1,0 +1,21 @@
+[
+	{"title":"Hygiene Products", 
+	"listItems": [
+	  	{"title": "Soap", 
+	  	"description": "Kind that smells good.", 
+	  	"completed": false},
+		{"title": "Comb", 
+		"description": "A giant one!", 
+		"completed": false},
+		{"title": "Shaving cream", 
+		"description": "Sensitive Skin", 
+		"completed": false}]},
+	{"title": "School Supplies",
+	"listItems": [
+	  	{"title": "Computer", 
+	  	"description": "Laptop", 
+	  	"completed": false},
+		{"title": "Notebooks", 
+		"description": "Just in case you take notes by hand.", 
+		"completed": false}]}
+]
