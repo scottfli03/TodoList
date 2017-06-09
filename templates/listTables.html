@@ -1,4 +1,3 @@
-<p>test</p>
 <ul id="lists"> 
 	<form name="listSetForm{{$index}}" novalidate="" id="listsForm">
 		<li id="titleListItem"><label id="list_title">{{$ctrl.list.title}}</label>
@@ -8,13 +7,13 @@
 					<th class="listTH">Title</th>
 					<th class="listTH">Description</th>
 				</tr>
-				<tr id ="list" ng-repeat="listItem in $ctrl.list.listItems">
+				<tr id="list" ng-repeat="listItem in $ctrl.list.listItems">
 					<td class="checkCol"><input type="checkbox" id="completedChk"></td>
 					<td class="listTD"><label id="cellListData">{{listItem.title}}</label></td>
 					<td class="listTD"><label id="cellListData">{{listItem.description}}</label></td>
 				</tr>
 			</table>
 		</li>
-		<add-list-item-table add-list-item="$ctrl.addListItem(list, title, description)" list="$ctrl.list" on-list-update="$ctrl.updateList()"></add-list-item-table>
+		<add-list-item-table add-list-item="$ctrl.addListItem" list="$ctrl.list"></add-list-item-table>
 	</form>			
 </ul>
