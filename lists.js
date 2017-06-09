@@ -1,62 +1,112 @@
-function ListSetController($scope, $element, $attrs, $http) {
-	var self = this; 
-	$http.get('JSON/lists.json').then(function(res){
-    		self.lists = res.data;                
-  	}
-  );
+angular.module("myApp").component('listApp', {
+	templateUrl: 'templates/listApp.html',
+	controller: function($http) {
+		self = this;
+		console.log("Entered List App Controller");
+		self.$onInit = $http.get('JSON/lists.json').then(function(res){
+			console.log("Attempting to access data.");
+  		self.lists = res.data;  
+			console.log(self.lists);              
+		});
+		
+  	self.addList = function(title) {
+			console.log("Attempting to add a new list");
+  		self.lists.push({title: title,
+  			itemsList: []
+  		})
+  	};
+  	self.addListItem = function(list, title, description) {
+			console.log("Attempting to add a list item");
+			list.listItems.push({title: title, description: description, completed: false});
 
-	self.addListItem = function(newItem, list) {
-		console.log(list);
-		var copyOfItem = {title: newItem.title,
-			description: newItem.description};
-		list.listItems.push(copyOfItem);
-		console.log(list);
-	};
+		};
+		self.updateLists = function(event) {
+			console.log("updateLists called.");
+			self.lists = event.lists;
+		};
+  }
+});
 
-	this.addList = function(title) {
-		var newList = {title: title, listItems:[]};
-		self.lists.push(newList);
-	};
-}
-
-angular.module("myApp").component('listSet', {
+//Views
+angular.module("myApp").component('listTables', {
 	bindings: {
-		lists: '&',
-		list: '&',
-		listItems: '&'
+		lists: '<',
+		list: '<',
+		addListItem: '&',
+		onListUpdate: '&'
 	},
-	templateUrl: 'templates/listSet.html',
-	controller: ListSetController
+	templateUrl: 'templates/listTables.html',
+	controller: function() {
+		self = this;
+		console.log("Entered ListTables Controller");
+		self.updateList = function(event) {
+			self.list = event.list;
+		}
+		self.$onChanges = function(changes) {
+			console.log("Entered listTables on change method.");
+			if (changes.list) {
+				console.log("changes.list === true");
+				self.list = angular.copy(changes.list.currentValue);
+			}
+		};
+		self.saveList = function() {
+			self.onListUpdate({
+				$event: {
+					list: self.list
+				}
+			});
+		};
+	}
 });
 
 angular.module("myApp").component('addListItemTable', {
 	bindings: {
-		lists: '&',
-		list: '&',
-		listItems: '&'
+		addListItem: '&',
+		list: '<',
+		onListUpdate: '&'
 	},
-	controller: ListSetController, 
-	templateUrl: 'templates/addListItemTable.html'
-});
-
-angular.module("myApp").component('listTables', {
-	bindings: {
-		lists: '&',
-		list: '&',
-		listItems: '&'
-	},
-	controller: ListSetController,
-	templateUrl: 'templates/listTables.html'
+	templateUrl: 'templates/addListItemTable.html',
+	controller: function() {
+		self = this;
+		console.log("Entered addListItemTable Controller");
+		self.$onChanges = function(changes) {
+			if(changes.list){
+				self.list = angular.copy(changes.list.currentValue);
+			}
+		};
+		self.saveList = function() {
+			self.onListUpdate({
+				$event: {
+					list: self.list
+				}
+			})
+		};
+	}
 });
 
 angular.module("myApp").component('newListForm', {
 	bindings: {
-		lists: '&',
-		list: '&',
-		listItems: '&'
+		addList: '&',
+		lists: '<',
+		onListsUpdate: '&'
 	},
-	controller: ListSetController,
-	templateUrl: 'templates/newListForm.html'
+	templateUrl: 'templates/newListForm.html',
+	controller: function() {
+		self = this;
+		console.log("Entered newListForm Controller");
+		self.$onChanges = function(changes) {
+			if (changes.lists && self.lists !== undefined) {
+				self.lists = angular.copy(self.lists.currentValue);
+			}
+		}
+		self.saveLists = function() {
+			self.onListsUpdate({
+				$event: {
+					lists: self.lists
+				}
+			})
+		};
+	}
 });
 
 

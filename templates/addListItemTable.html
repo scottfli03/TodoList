@@ -1,12 +1,16 @@
-<div><table class="formTable">
-	<tr>
-		<th class="formTH">Title</th>
-		<th class="formTH">Description</th>
-		<th class="formTH"></th>
-	</tr>
-	<tr>
-		<td class="formTD"><input type="text" name="txtTitle" ng-model="newItem.title" required></td>
-		<td class="formTD"><input type="text" name="txtDescription" ng-model="newItem.description" required></td>
-		<td class="formTD"><input type="submit" ng-click="$ctrl.addListItem(newItem, list)" value="Add item" /></td>
-	</tr>
-</table></div>
+<div>
+	<label>{{$ctrl.list.title}}</label>
+	<table class="formTable">
+		<tr>
+			<th class="formTH">Title</th>
+			<th class="formTH">Description</th>
+			<th class="formTH"></th>
+		</tr>
+		<tr>
+			<td class="formTD"><input type="text" name="txtTitle" ng-model="title"></td>
+			<td class="formTD"><input type="text" ng-model="description"></td>
+			<td class="formTD"><input type="submit" ng-click="$ctrl.addListItem($ctrl.list, title: title, description: description)" value="Add item" /></td>
+		</tr>
+	</table>
+	<span ng-show="txtTitle.$error.required">Please enter something!</span>
+</div>

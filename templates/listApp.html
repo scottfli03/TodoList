@@ -1,0 +1,11 @@
+<list-tables 
+  lists="$ctrl.lists" 
+  add-list-item="$ctrl.addListItem(list, title, description)" 
+  on-list-update="$ctrl.updateList($event)" 
+  ng-repeat="list in $ctrl.lists">
+</list-tables>
+<new-list-form
+  lists="$ctrl.lists" 
+  add-list="$ctrl.addList(title)" 
+  on-lists-update="$ctrl.updateLists($event)">
+</new-list-form>
