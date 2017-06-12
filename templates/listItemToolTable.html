@@ -8,7 +8,17 @@
 		<tr>
 			<td class="formTD"><input type="text" name="title" ng-model="newItem.title"></td>
 			<td class="formTD"><input type="text" name="description" ng-model="newItem.description"></td>
-			<td class="formTD"><input type="submit" ng-click="$ctrl.addListItem()($ctrl.list, newItem)"/></td>
+			<td class="formTD"><input type="submit" 
+				ng-model="newItem.selected"
+				ng-click="$ctrl.addListItem()($ctrl.list, newItem)" 
+				ng-true-value="selected" 
+				ng-false-value="unselected"/></td>
+		</tr>
+		<tr>
+			<td><input type="submit" 
+				ng-click="$ctrl.makeSelectedCompleted()($ctrl.list)" 
+				value="Mark items as Completed"/ >
+			</td>
 		</tr>
 	</table>
 	<span ng-show="txtTitle.$error.required">Please enter something!</span>

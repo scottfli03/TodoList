@@ -1,8 +1,15 @@
 <list-tables 
   list="list" 
   add-list-item="$ctrl.addListItem" 
+  remove-list="$ctrl.removeList" 
+  remove-list-item="$ctrl.removeListItem" 
+  update-list-item="$ctrl.updateListItem" 
+  make-selected-completed="$ctrl.makeSelectedCompleted" 
   ng-repeat="list in $ctrl.lists">
 </list-tables>
-<new-list-form
-  add-list="$ctrl.addList">
-</new-list-form>
+<div id="formSeperator"></div>
+<div id="newListForm">
+  <new-list-form 
+    add-list="$ctrl.addList">
+  </new-list-form>
+</div>

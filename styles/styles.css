@@ -45,6 +45,8 @@ td.checkCol {
 	border-style: solid;
 	border-width: 1px;
 	border-collapse: collapse;
+	padding-left: 10px;
+	padding-right: 10px;
 	text-align: center;
 	vertical-align: center;
 }
@@ -60,5 +62,12 @@ table.formTable {
 }
 #cellListData {
 	padding: 5px 5px;
+}
+#formSeperator {
+	border-style: solid;
+	border-width: 1px;
+}
+#newListForm {
+	margin-top: 15px;
 }
 

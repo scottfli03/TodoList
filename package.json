@@ -4,7 +4,7 @@
   "description": "View, add, edit, remove tasks in list.",
   "main": "index.html",
   "scripts": {
-    "test": "test"
+     "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/scottfli03/TodoList/issues"
   },
-  "homepage": "https://github.com/scottfli03/TodoList#readme"
+  "homepage": "https://github.com/scottfli03/TodoList#readme",
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
 }
