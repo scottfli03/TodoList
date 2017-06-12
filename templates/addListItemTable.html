@@ -6,9 +6,9 @@
 			<th class="formTH"></th>
 		</tr>
 		<tr>
-			<td class="formTD"><input type="text" name="title" ng-model="$ctrl.newItem.title"></td>
-			<td class="formTD"><input type="text" name="description" ng-model="$ctrl.newItem.description"></td>
-			<td class="formTD"><input type="submit" ng-click="$ctrl.addListItem($ctrl.newItem)"/></td>
+			<td class="formTD"><input type="text" name="title" ng-model="newItem.title"></td>
+			<td class="formTD"><input type="text" name="description" ng-model="newItem.description"></td>
+			<td class="formTD"><input type="submit" ng-click="$ctrl.addListItem()($ctrl.list, newItem)"/></td>
 		</tr>
 	</table>
 	<span ng-show="txtTitle.$error.required">Please enter something!</span>
