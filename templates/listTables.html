@@ -1,7 +1,8 @@
 <ul id="lists"> 
 	<form name="listSetForm{{$index}}" novalidate="" id="listsForm">
-		<li id="titleListItem"><label id="list_title">{{$ctrl.list.title}}</label>
-		<input type="submit" ng-click="$ctrl.removeList()($ctrl.list)" value="Delete List"/ >
+		<li id="titleListItem">
+			<label id="list_title">{{$ctrl.list.title}}</label>
+			<input type="submit" ng-click="$ctrl.removeList()($ctrl.list)" value="Delete List"/ >
 			<table class="listTable">
 				<tr class="listTR">
 					<th class="listTH">&#10003;</th>
@@ -10,7 +11,9 @@
 					<th class="listTH">Remove</th>
 					<th class="listTH">Completed</th>
 				</tr>
-				<tr id="list" ng-repeat="listItem in $ctrl.list.listItems">
+				<tr id="list" 
+					ng-repeat="listItem in $ctrl.list.listItems" 
+					ng-hide="listItem.completed===true">
 					<td class="checkCol">
 						<input type="checkbox" 
 							id="chkIsSelected" 

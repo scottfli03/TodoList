@@ -71,3 +71,22 @@ table.formTable {
 	margin-top: 15px;
 }
 
+.tab-selector {
+	padding-left: 0px;
+	margin-bottom: 0px;
+}
+
+.tab-selector > li{
+	border-style: solid;
+	border-width: 1px;
+	padding-right: 20px;
+	padding-left: 20px;
+	display: inline;
+}
+
+.tab {
+	padding: 30px 30px 30px 30px;
+	border-width: 1px;
+	border-style: solid;
+}
+
