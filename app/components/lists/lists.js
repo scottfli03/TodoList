@@ -4,7 +4,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 		// delete $localStorage.lists;
 		console.log("Entered List App Controller");
 		if(!$localStorage.lists) {
-			self.$onInit = $http.get('JSON/lists.json').then(function(res){
+			self.$onInit = $http.get('assets/JSON/lists.json').then(function(res){
 				console.log("Attempting to access data.");
 	  		self.lists = res.data;
 	  		self.saveListData();           
@@ -83,7 +83,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 		};
 		loadListData();
   },
-	templateUrl: 'templates/listApp.html',
+	templateUrl: 'app/components/lists/listApp.html',
 	bindings: {
 		listType: '@'
 	}
@@ -100,7 +100,7 @@ angular.module("myApp").component('listTables', {
 		toggleCompleted: '&',
 		listType: '<'
 	},
-	templateUrl: 'templates/listTables.html',
+	templateUrl: 'app/components/lists/listTables.html',
 	controller: function() {
 		var self = this;
 		console.log("Entered ListTables Controller");
@@ -114,7 +114,7 @@ angular.module("myApp").component('listItemToolTable', {
 		list: '<',
 		listType: '<'
 	},
-	templateUrl: 'templates/listItemToolTable.html',
+	templateUrl: 'app/components/lists/listItemToolTable.html',
 	controller: function() {
 		var self = this;
 		console.log("Entered addListItemTable Controller");
@@ -128,7 +128,7 @@ angular.module("myApp").component('newListForm', {
 	bindings: {
 		addList: '&'
 	},
-	templateUrl: 'templates/newListForm.html',
+	templateUrl: 'app/components/lists/newListForm.html',
 	controller: function() {
 		self = this;
 		console.log("Entered newListForm Controller");

@@ -1,6 +1,6 @@
 angular.module("myApp").component('tabSet', {
   controller: 'tabSetCtrl',
-  templateUrl: 'templates/tabSet.html',
+  templateUrl: 'app/components/tab/tabSet.html',
   transclude: true
 });
 
@@ -23,7 +23,7 @@ angular.module("myApp").controller('tabSetCtrl', function($scope, $element, $att
 });
 
 angular.module("myApp").component('tabPane', {
-  templateUrl: 'templates/tab.html',
+  templateUrl: 'app/components/tab/tab.html',
   transclude: true,
   controller: function($scope, $element, $attrs) {
 
