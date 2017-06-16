@@ -28,7 +28,7 @@ ul {
 body {
 	margin-left: 10%;
 	margin-right: 10%;
-	background-color: #f9f9de;
+	background-color: #c3c7ae;
 }
 table.listTable, tr.listTR, th.listTH, td.listTD {
 	border-style: solid;
@@ -36,7 +36,7 @@ table.listTable, tr.listTR, th.listTH, td.listTD {
 	border-collapse: collapse;
 	margin-top:3px;
 	margin-bottom: 5px;
-	background-color: #d6f9f5;
+	background-color: #f3f7dd;
 }
 td.listTD, th.listTH {
 	padding: 10px 5px 10px 5px;
@@ -79,14 +79,21 @@ table.formTable {
 .tab-selector > li{
 	border-style: solid;
 	border-width: 1px;
-	padding-right: 20px;
-	padding-left: 20px;
+	border-radius: 6px 6px 0 0;
+	padding: 5px 20px 0px 20px;
 	display: inline;
+	background-color: #eefca5;
+}
+
+.tab-selector > li.active {
+	background-color: #e4fca5;
 }
 
 .tab {
 	padding: 30px 30px 30px 30px;
 	border-width: 1px;
 	border-style: solid;
+	background-color: #eefca5;
+	border-radius: 0px 6px 6px 6px;
 }
 
