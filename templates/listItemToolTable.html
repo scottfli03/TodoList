@@ -1,0 +1,44 @@
+<form name="newListItemForm">
+	<div ng-if="$ctrl.listType==='incomplete'">
+		<table class="formTable">
+			<tr>
+				<th class="formTH">Title</th>
+				<th class="formTH">Description</th>
+				<th class="formTH"></th>
+			</tr>
+			<tr>
+				<td class="formTD">
+					<input type="text" name="title" ng-model="newItem.title">
+				</td>
+				<td class="formTD">
+					<input type="text" name="description" ng-model="newItem.description">
+				</td>
+				<td class="formTD">
+					<input type="submit"
+						name="btnNewItem" 
+						ng-click="$ctrl.addListItem()($ctrl.list, newItem)" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="submit" 
+						name="toCompletedBtn" 
+						ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)" 
+						value="Mark checked Completed" />
+				</td>
+<!-- 				<td>
+					<label>{{$ctrl.listType}}</label>
+				</td>
+				<td>
+					<label>{{$ctrl.list.title}}</label>
+				</td> -->
+			</tr>
+		</table>
+	</div>
+	<div ng-if="$ctrl.listType==='completed'">
+		<input type="submit" 
+			name="toIncompleteBtn" 
+			ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)" 
+			value="Mark check Incompleted" />
+	</div>
+</form>
