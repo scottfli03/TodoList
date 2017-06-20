@@ -3,7 +3,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 		var self = this;
 		// delete $localStorage.lists;
 		console.log("Entered List App Controller");
-		if(!$localStorage.lists) {
+		if (typeof $localStorage.lists === "undefined") {
 			self.$onInit = $http.get('assets/JSON/lists.json').then(function(res){
 				console.log("Attempting to access data.");
 	  		self.lists = res.data;
@@ -55,7 +55,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 			self.lists[listIndex].listItems.splice(itemIndex, 1);
 		};
 		self.toggleCompleted = function(listType, list) {
-			console.log("toggleCompleted called");
+			console.log("setComplete called");
 			var liLength = list.listItems.length;
 			var index = self.lists.indexOf(list);
 			var liIsSelected;
@@ -63,13 +63,13 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 				liIsSelected = list.listItems[i].isSelected;
 				if (liIsSelected === true && listType === 'incomplete') {
 					list.listItems[i].completed = true;
-				} else if (liIsSelected === true && listType === 'completed'){
+				} else if (liIsSelected === true && listType === 'completed') {
 					list.listItems[i].completed = false;
 				}
 			}
 			self.setUnSelected();
 			self.lists[index] = angular.copy(list);
-		};	
+		};
 		self.setUnSelected = function() {
 			var listsLength = self.lists.length;
 			var i, a, theList, liLength;
@@ -81,7 +81,10 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 				}
 			}
 		};
-		loadListData();
+		if (typeof $localStorage.lists !== "undefined") {
+			loadListData();
+		}
+		console.log(self);
   },
 	templateUrl: 'app/components/lists/listApp.html',
 	bindings: {

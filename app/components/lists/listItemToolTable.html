@@ -22,23 +22,17 @@
 			<tr>
 				<td>
 					<input type="submit" 
-						name="toCompletedBtn" 
-						ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)" 
+						name="setCompletedBtn" 
+						ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)"
 						value="Mark checked Completed" />
 				</td>
-<!-- 				<td>
-					<label>{{$ctrl.listType}}</label>
-				</td>
-				<td>
-					<label>{{$ctrl.list.title}}</label>
-				</td> -->
 			</tr>
 		</table>
 	</div>
 	<div ng-if="$ctrl.listType==='completed'">
 		<input type="submit" 
-			name="toIncompleteBtn" 
+			name="setIncompleteBtn" 
 			ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)" 
-			value="Mark check Incompleted" />
+			value="Mark checked Incompleted" />
 	</div>
 </form>

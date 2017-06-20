@@ -22,7 +22,15 @@
   },
   "homepage": "https://github.com/scottfli03/TodoList#readme",
   "devDependencies": {
+    "@uirouter/angularjs": "^1.0.3",
+    "angular": "^1.6.4",
+    "angular-mocks": "^1.6.4",
     "gulp-jasmine": "^2.4.2",
-    "jasmine": "^2.6.0"
+    "jasmine": "^2.6.0",
+    "jasmine-core": "^2.6.3",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-read-json": "^1.1.0"
   }
 }
