@@ -3,28 +3,60 @@ describe('listApp', function() {
   beforeEach(module('myApp'));
   beforeEach(module('ngStorage'));
 
-  var $scope,
-  $http, 
-  $componentController,
-  $localStorage;
+  beforeEach(function() {
+    store = {};
+    lists = [  
+      {"title":"Hygiene Products", 
+      "isNew":false,
+      "listItems": [
+        {"title": "Soap", 
+        "description": "Kind that smells good.",
+        "isSelected": true, 
+        "completed": false},
+        {"title": "Comb", 
+        "description": "A giant one!", 
+        "isSelected": false,
+        "completed": false},
+        {"title": "Shaving cream", 
+        "description": "Sensitive Skin",
+        "isSelected": false, 
+        "completed": false}]},
+      {"title": "School Supplies",
+      "isNew": false,
+      "listItems": [
+        {"title": "Computer", 
+        "description": "Laptop",
+        "isSelected": false, 
+        "completed": false},
+        {"title": "Notebooks", 
+        "description": "Just in case you take notes by hand.",
+        "isSelected": true, 
+        "completed": true}]}
+    ];
+  });
 
   // --- Before each test in the Component --- //
-  beforeEach(inject(function($rootScope, $componentController) {
-    // var $localStorage = {};
+  beforeEach(inject(function($injector, $rootScope, $componentController, $localStorage, $http, $q) {
     $scope = $rootScope.$new();
+    deferred = $q.defer();
 
-    // spyOn(localStorage, 'getItem').and.callFake(function (key) {
-    //   return store[key];
-    // });
-    // spyOn(localStorage, 'setItem').and.callFake(function (key, value) {
-    //   return store[key] = value + '';
-    // });
-    // spyOn(localStorage, 'clear').and.callFake(function () {
-    //     $localStorage = {};
-    // });
+    $localStorage.getItem = function(key){};
+    $localStorage.setItem = function(key, value) {};
+    $localStorage.clear = function() {};
 
-    // $localStorage.lists = lists;
+    spyOn($localStorage, 'getItem').and.callFake(function (key) {
+      return store[key];
+    });
+    spyOn($localStorage, 'setItem').and.callFake(function (key, value) {
+      return store[key] = value + '';
+    });
+    spyOn($localStorage, 'clear').and.callFake(function () {
+      store = {};
+    });
+    spyOn($http, 'get').and.returnValue(deferred.promise);
+
     ctrl = $componentController('listApp', {$scope, $http, $localStorage});
+    ctrl.lists = lists;
   }));
 
   // Original listApp test   describe('listApp', function() {

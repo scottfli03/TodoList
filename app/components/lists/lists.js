@@ -2,53 +2,25 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 	controller: function($scope, $http, $localStorage) {
 		var self = this;
 		// delete $localStorage.lists;
-		self.lists = [  
-      {"title":"Hygiene Products", 
-      "isNew":false,
-      "listItems": [
-        {"title": "Soap", 
-        "description": "Kind that smells good.",
-        "isSelected": true, 
-        "completed": false},
-        {"title": "Comb", 
-        "description": "A giant one!", 
-        "isSelected": false,
-        "completed": false},
-        {"title": "Shaving cream", 
-        "description": "Sensitive Skin",
-        "isSelected": false, 
-        "completed": false}]},
-      {"title": "School Supplies",
-      "isNew": false,
-      "listItems": [
-        {"title": "Computer", 
-        "description": "Laptop",
-        "isSelected": false, 
-        "completed": false},
-        {"title": "Notebooks", 
-        "description": "Just in case you take notes by hand.",
-        "isSelected": true, 
-        "completed": true}]}
-    ];
-		// self.getLists = function() {
-		// 	if (typeof $localStorage.lists === "undefined") {
-		// 		$http.get('assets/JSON/lists.json').then(function(res){
-		// 			console.log("Attempting to access data.");
-		//   		self.lists = res.data;
-		//   		self.saveListData();           
-		// 		});
-		// 	} else {
-		// 		self.lists = localStorage.lists;
-		// 	}
-		// };
+		self.getLists = function() {
+			if (typeof $localStorage.lists === "undefined") {
+				$http.get('assets/JSON/lists.json').then(function(res){
+					console.log("Attempting to access data.");
+		  		self.lists = res.data;
+		  		self.saveListData();           
+				});
+			} else {
+				self.lists = localStorage.lists;
+			}
+		};
 
-		// self.loadListData = function() {
-		// 	self.lists = $localStorage.lists;
-		// }
+		self.loadListData = function() {
+			self.lists = $localStorage.lists;
+		}
 
-		// self.saveListData = function() {
-		// 	$localStorage.lists = self.lists;
-		// }
+		self.saveListData = function() {
+			$localStorage.lists = self.lists;
+		}
 
   	self.addList = function(title) {
   		self.lists.push({title: title,
@@ -110,10 +82,10 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 				}
 			}
 		};	
-		// self.getLists();
-		// if (typeof $localStorage.lists !== "undefined") {
-		// 	loadListData();
-		// }
+		self.getLists();
+		if (typeof $localStorage.lists !== "undefined") {
+			self.loadListData();
+		}
   },
 	templateUrl: 'app/components/lists/listApp.html',
 	bindings: {
@@ -132,11 +104,33 @@ angular.module("myApp").component('listTables', {
 		toggleCompleted: '&',
 		listType: '<'
 	},
-	templateUrl: 'app/components/lists/listTables.html',
-	controller: function() {
-		var self = this;
-		console.log("Entered ListTables Controller");
-	}
+	templateUrl: 'app/components/lists/listTables.html'
+});
+
+angular.module("myApp").component('incompleteListForm', {
+	bindings: {
+		list: '<',
+		addListItem: '&',
+		removeList: '&',
+		removeListItem: '&',
+		updateListItem: '&',
+		toggleCompleted: '&',
+		listType: '<'
+  },
+  templateUrl: 'app/components/lists/incompleteListForm.html'
+});
+
+angular.module("myApp").component('completedListForm', {
+	bindings: {
+		list: '<',
+		addListItem: '&',
+		removeList: '&',
+		removeListItem: '&',
+		updateListItem: '&',
+		toggleCompleted: '&',
+		listType: '<'
+  },
+  templateUrl: 'app/components/lists/completedListForm.html'
 });
 
 angular.module("myApp").component('listItemToolTable', {
@@ -147,24 +141,13 @@ angular.module("myApp").component('listItemToolTable', {
 		listType: '<'
 	},
 	templateUrl: 'app/components/lists/listItemToolTable.html',
-	controller: function() {
-		var self = this;
-		console.log("Entered addListItemTable Controller");
-		var testIt = function(message) {
-			console.log(message);
-		}
-	}
 });
 
 angular.module("myApp").component('newListForm', {
 	bindings: {
 		addList: '&'
 	},
-	templateUrl: 'app/components/lists/newListForm.html',
-	controller: function() {
-		self = this;
-		console.log("Entered newListForm Controller");
-	}
+	templateUrl: 'app/components/lists/newListForm.html'
 });
 
 

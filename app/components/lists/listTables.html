@@ -1,87 +1,26 @@
 <div ng-switch="$ctrl.listType">
 	<ul id="lists" ng-switch-when="incomplete">
 		<div ng-if="$ctrl.list.listItems.length > 0 || $ctrl.list.isNew;">
-			<form name="listSetForm{{$index}}" novalidate="" id="listsForm">
-				<li id="titleListItem">
-					<label id="list_title">{{$ctrl.list.title}}</label>
-					<input type="submit" 
-						name="btnDelete" 
-						ng-click="$ctrl.removeList()($ctrl.list)" 
-						value="Delete List"/ >
-					<table class="listTable">
-						<tr class="listTR">
-							<th class="listTH">&#10003;</th>
-							<th class="listTH">Title</th>
-							<th class="listTH">Description</th>
-							<th class="listTH">Remove</th>
-							<th class="listTH">Completed</th>
-						</tr>
-						<tr id="list" 
-							ng-repeat="listItem in $ctrl.list.listItems" 
-							ng-hide="listItem.completed===true">
-							<td class="checkCol">
-								<input type="checkbox" 
-									id="chkIsSelected" 
-									ng-checked="{{listItem.isSelected}}" 
-									ng-model="listItem.isSelected"
-									ng-click="$ctrl.updateListItem()($ctrl.list, listItem)" />
-							</td>
-							<td class="listTD"><label id="cellListData">{{listItem.title}}</label></td>
-							<td class="listTD"><label id="cellListData">{{listItem.description}}</label></td>
-							<td class="listTD">
-								<a href ng-click="$ctrl.removeListItem()($ctrl.list, listItem)" />remove</a>
-							</td>
-							<td class="listTD"><label id="cellListData">{{listItem.completed}}</label></td>
-						</tr>
-					</table>
-				</li>
-				<list-item-tool-table 
-					list-type="$ctrl.listType"
-					add-list-item="$ctrl.addListItem()" 
-					toggle-completed="$ctrl.toggleCompleted()" 
-					list="$ctrl.list">
-				</list-item-tool-table>
-			</form>
+			<incomplete-list-form
+				list="$ctrl.list" 
+				list-type="$ctrl.listType"
+    		add-list-item="$ctrl.addListItem()"
+    		remove-list="$ctrl.removeList()" 
+  			remove-list-item="$ctrl.removeListItem()" 
+  			update-list-item="$ctrl.updateListItem()" 
+    		toggle-completed="$ctrl.toggleCompleted()">
+    	</incomplete-list-form>
 		</div>			
 	</ul>
-
 	<ul id="lists" ng-switch-when="completed"> 
-		<form name="listSetForm{{$index}}" novalidate="" id="listsForm">
-			<li id="titleListItem">
-				<label id="list_title">{{$ctrl.list.title}}</label>
-				<input type="submit" ng-click="$ctrl.removeList()($ctrl.list)" value="Delete List"/ >
-				<table class="listTable">
-					<tr class="listTR">
-						<th class="listTH">&#10003;</th>
-						<th class="listTH">Title</th>
-						<th class="listTH">Description</th>
-						<th class="listTH">Remove</th>
-						<th class="listTH">Completed</th>
-					</tr>
-					<tr id="list" 
-						ng-repeat="listItem in $ctrl.list.listItems" 
-						ng-hide="listItem.completed===false">
-						<td class="checkCol">
-							<input type="checkbox" 
-								id="chkIsSelected" 
-								ng-checked="{{listItem.isSelected}}" 
-								ng-model="listItem.isSelected"
-								ng-click="$ctrl.updateListItem()($ctrl.list, listItem)"
-						</td>
-						<td class="listTD"><label id="cellListData">{{listItem.title}}</label></td>
-						<td class="listTD"><label id="cellListData">{{listItem.description}}</label></td>
-						<td class="listTD">
-							<a href ng-click="$ctrl.removeListItem()($ctrl.list, listItem)" />remove</a>
-						</td>
-						<td class="listTD"><label id="cellListData">{{listItem.completed}}</label></td>
-					</tr>
-				</table>
-			</li>
-			<list-item-tool-table
+		<completed-list-form 
+				list="$ctrl.list" 
 				list-type="$ctrl.listType"
-				add-list-item="$ctrl.addListItem()" 
-				toggle-completed="$ctrl.toggleCompleted()" 
-				list="$ctrl.list">
-			</list-item-tool-table>
-		</form>			
+    		add-list-item="$ctrl.addListItem()"
+    		remove-list="$ctrl.removeList()" 
+  			remove-list-item="$ctrl.removeListItem()" 
+  			update-list-item="$ctrl.updateListItem()" 
+    		toggle-completed="$ctrl.toggleCompleted()">
+	  </completed-list-form>			
 	</ul>
+</div>
