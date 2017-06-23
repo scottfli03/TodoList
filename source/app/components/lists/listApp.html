@@ -1,11 +1,11 @@
 <list-tables 
-  list="list" 
+  lists="$ctrl.lists" 
+  incomplete-filter="$ctrl.incompleteFilter"
   add-list-item="$ctrl.addListItem" 
   remove-list="$ctrl.removeList" 
   remove-list-item="$ctrl.removeListItem" 
   update-list-item="$ctrl.updateListItem" 
-  toggle-completed="$ctrl.toggleCompleted"  
-  ng-repeat="list in $ctrl.lists"
+  toggle-completed="$ctrl.toggleCompleted"
   list-type="$ctrl.listType">
 </list-tables>
 <div ng-hide="$ctrl.listType==='completed'">

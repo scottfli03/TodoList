@@ -1,0 +1,22 @@
+<form name="newListItemForm" novalidate>
+	<table class="formTable">
+		<tr>
+			<th class="formTH">Title</th>
+			<th class="formTH">Description</th>
+			<th class="formTH"></th>
+		</tr>
+		<tr>
+			<td class="formTD">
+				<input type="text" name="txtTitle" ng-model="newItem.title" required>
+			</td>
+			<td class="formTD">
+				<input type="text" name="txtDesc" ng-model="newItem.description" required>
+			</td>
+			<td class="formTD">
+				<input type="submit"
+					name="btnNewItem" 
+					ng-click="txtTitle.$valid && $ctrl.addListItem()($ctrl.list, newItem)" />
+			</td>
+		</tr>
+	</table>
+</form>

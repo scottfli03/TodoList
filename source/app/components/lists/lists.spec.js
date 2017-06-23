@@ -181,8 +181,7 @@ describe('listApp', function() {
 
     // --- Tests for toggleCompleted function --- //
     describe('toggleCompleted', function() {
-      it('should properly toggle the completed property if and only if it is selected'
-        +' and change the listItem to unselected when listType is "completed"', function() {
+      it('should properly toggle the completed property if and only if it is selected and change the listItem to unselected when listType is "completed"', function() {
         expect(ctrl.lists[1].listItems[0].isSelected).toEqual(false);
         expect(ctrl.lists[1].listItems[0].completed).toEqual(false);
         expect(ctrl.lists[1].listItems[1].completed).toEqual(true);
@@ -194,8 +193,7 @@ describe('listApp', function() {
         expect(ctrl.lists[1].listItems[1].isSelected).toEqual(false);
       });
 
-      it('should properly toggle the completed property if and only if it is selected'
-        +' and change the listItem to unselected when listType is "incomplete"', function() {
+      it('should properly toggle the completed property if and only if it is selected and change the listItem to unselected when listType is "incomplete"', function() {
         expect(ctrl.lists[0].listItems[0].isSelected).toEqual(true);
         expect(ctrl.lists[0].listItems[0].completed).toEqual(false);
         expect(ctrl.lists[0].listItems[1].completed).toEqual(false);

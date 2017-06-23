@@ -13,14 +13,19 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 				self.lists = localStorage.lists;
 			}
 		};
+		self.incompleteFilter = function() {
+			return function(list) {
+				return !list.listItems.completed || list.isNew;
+			};
+		};
 
 		self.loadListData = function() {
 			self.lists = $localStorage.lists;
-		}
+		};
 
 		self.saveListData = function() {
 			$localStorage.lists = self.lists;
-		}
+		};
 
   	self.addList = function(title) {
   		self.lists.push({title: title,
@@ -35,8 +40,8 @@ angular.module("myApp",['ngStorage']).component('listApp', {
   	};
 
   	self.addListItem = function(list, newItem) {
-			newItem["isSelected"] = false;
-			newItem["completed"] = false;
+			newItem.isSelected = false;
+			newItem.completed = false;
 			list.isNew = false;
 			var newItemCopy = angular.copy(newItem);
 			list.listItems.push(newItemCopy);
@@ -78,7 +83,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 				theList = self.lists[i];
 				liLength = theList.listItems.length;
 				for (a = 0; a < liLength; a++) {
-					theList.listItems[a]["isSelected"] = false;
+					theList.listItems[a].isSelected = false;
 				}
 			}
 		};	
@@ -87,7 +92,7 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 			self.loadListData();
 		}
   },
-	templateUrl: 'app/components/lists/listApp.html',
+	templateUrl: 'source/app/components/lists/listApp.html',
 	bindings: {
 		listType: '@'
 	}
@@ -96,7 +101,8 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 //Views
 angular.module("myApp").component('listTables', {
 	bindings: {
-		list: '<',
+		lists: '<',
+		incompleteFilter: '&',
 		addListItem: '&',
 		removeList: '&',
 		removeListItem: '&',
@@ -104,12 +110,13 @@ angular.module("myApp").component('listTables', {
 		toggleCompleted: '&',
 		listType: '<'
 	},
-	templateUrl: 'app/components/lists/listTables.html'
+	templateUrl: 'source/app/components/lists/listTables.html'
 });
 
 angular.module("myApp").component('incompleteListForm', {
 	bindings: {
 		list: '<',
+		incompleteFilter: '&',
 		addListItem: '&',
 		removeList: '&',
 		removeListItem: '&',
@@ -117,7 +124,7 @@ angular.module("myApp").component('incompleteListForm', {
 		toggleCompleted: '&',
 		listType: '<'
   },
-  templateUrl: 'app/components/lists/incompleteListForm.html'
+  templateUrl: 'source/app/components/lists/incompleteListForm.html'
 });
 
 angular.module("myApp").component('completedListForm', {
@@ -130,7 +137,7 @@ angular.module("myApp").component('completedListForm', {
 		toggleCompleted: '&',
 		listType: '<'
   },
-  templateUrl: 'app/components/lists/completedListForm.html'
+  templateUrl: 'source/app/components/lists/completedListForm.html'
 });
 
 angular.module("myApp").component('listItemToolTable', {
@@ -140,14 +147,14 @@ angular.module("myApp").component('listItemToolTable', {
 		list: '<',
 		listType: '<'
 	},
-	templateUrl: 'app/components/lists/listItemToolTable.html',
+	templateUrl: 'source/app/components/lists/listItemToolTable.html'
 });
 
 angular.module("myApp").component('newListForm', {
 	bindings: {
 		addList: '&'
 	},
-	templateUrl: 'app/components/lists/newListForm.html'
+	templateUrl: 'source/app/components/lists/newListForm.html'
 });
 
 
