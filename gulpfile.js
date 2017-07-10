@@ -26,7 +26,8 @@ var paths = {
   htmlPartials: ['./source/app/components/**/*.html',
     '!./source/index.html'],
   json: './source/assets/JSON/*.json',
-  css: './source/assets/css/styles.css'
+  css: './source/assets/css/styles.css',
+  csv: './source/assets/csv/*.csv'
 }
 
 // gulp.task('default', ['tests','js','json','css','htmlPartials']);
@@ -121,6 +122,11 @@ pipes.builtStylesProd = function() {
     .pipe(gulp.dest(paths.prod));
 };
 
+pipes.builtCsvProd = function() {
+  return gulp.src(paths.csv)
+    .pipe(gulp.dest(paths.prod));
+}
+
 pipes.validatedIndex = function() {
   return gulp.src(paths.theIndex)
     .pipe(plugins.htmlhint())
@@ -132,6 +138,7 @@ pipes.builtIndexProd = function() {
   var appMainScript = pipes.builtMainScript();
   var appScripts = pipes.builtAppScriptsProd();
   var appStyles = pipes.builtStylesProd();
+  var appData = pipes.builtCsvProd();
 
   return pipes.validatedIndex()
     .pipe(gulp.dest(paths.prod)) // write first to get relative path for inject
