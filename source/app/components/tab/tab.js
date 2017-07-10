@@ -1,10 +1,10 @@
-angular.module("myApp").component('tabSet', {
+angular.module("tabMod",[]).component('tabSet', {
   controller: 'tabSetCtrl',
-  templateUrl: 'source/app/components/tab/tabSet.html',
+  templateUrl: 'tabSet.html',
   transclude: true
 });
 
-angular.module("myApp").controller('tabSetCtrl', function($scope, $element, $attrs) {
+angular.module("tabMod").controller('tabSetCtrl', ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
   console.log("Entered tabSet controller.");
   var self = this;
   self.tabs = [];
@@ -20,18 +20,18 @@ angular.module("myApp").controller('tabSetCtrl', function($scope, $element, $att
     });
     tab.active = true;
   };
-});
+}]);
 
-angular.module("myApp").component('tabPane', {
-  templateUrl: 'source/app/components/tab/tab.html',
+angular.module("tabMod").component('tabPane', {
+  templateUrl: 'tab.html',
   transclude: true,
-  controller: function($scope, $element, $attrs) {
-
+  controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
+    console.log("Entered tab controller");
     var self = this;
     self.$onInit = function() {
       self.$OnInit = self.tabSet.addTab(this);
     };
-  },
+  }],
   bindings: {
     header: '@'
   },

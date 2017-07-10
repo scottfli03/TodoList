@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<link rel="stylesheet" href="source/assets/css/styles.css">
+  <title>Todo Lister</title>
+  <!-- start prod imports -->
+  <link rel="stylesheet" href="styles.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="app.min.js"></script>
+  <script src="myApp.js"></script>
+  <!-- end prod imports -->
+  <!-- start dev imports
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<script src="source/app/app.module.js"></script>
 	<script src="source/app/components/lists/lists.js"></script>
   <script src="source/app/components/tab/tab.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+  end dev imports -->
 </head>
 <body ng-app="myApp">
-	<div id="page-header">Things to bring to College</div>
+	<div id="page-header">TODO: Lister</div>
   <tab-set>
     <tab-pane header="Incomplete">
       <list-app list-type="incomplete"></list-app>
     </tab-pane>
     <tab-pane header="Completed">
       <list-app list-type="completed"></list-app>
+    </tab-pane>
+    <tab-pane header="Graphic Display">
+      <graphic-display></graphic-display>
     </tab-pane>
   </tab-set>
 </body>

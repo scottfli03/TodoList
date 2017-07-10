@@ -2,15 +2,18 @@
 :root {
 	--tab-main-tab-color: #eefca5;
 }
+
 /*- Title that displays above the table -*/
 #list_title {
 	margin-top: 10px;
 	font-weight: bold;
 	font-family: 'arial';
 }
+
 ul {
 	list-style-type:  none;
 }
+
 /*- The header of the app -*/
 #page-header {
 	margin-bottom: 0px;
@@ -19,18 +22,22 @@ ul {
 	font-family: 'arial';
 	font-size: 200%;
 }
-#lists {
+
+.lists {
 	padding-left: 0;
 	margin-top: 0;
 }
-#list {
+
+.list {
 	padding-left: 1em;
 }
+
 body {
 	margin-left: 10%;
 	margin-right: 10%;
 	background-color: #c3c7ae;
 }
+
 /***** list tables ******/
 /* general table element changes*/
 table.listTable, tr.listTR, th.listTH, td.listTD {
@@ -41,12 +48,15 @@ table.listTable, tr.listTR, th.listTH, td.listTD {
 	width: auto;
 	background-color: #f3f7dd;
 }
+
 td.listTD {
 	text-align: left;
 }
+
 td.listTD, th.listTH {
 	padding: 10px 5px 10px 5px;
 }
+
 /* Checkbox Column */ 
 td.checkCol {
 	border-style: solid;
@@ -57,6 +67,7 @@ td.checkCol {
 	text-align: center;
 	vertical-align: center;
 }
+
 /* New Item row */
 td.newItemTD {
 	border-style: solid;
@@ -66,26 +77,33 @@ td.newItemTD {
 	background-color: #f3f7dd;
 	border-top-width: 2px;
 }
+
 th.listTH {
 	text-align: center;
 	vertical-align: center;
 }
+
 th.formTH {
 	text-align: left;
 }
+
 table.formTable {
 	margin-bottom: 20px;
 }
-#cellListData {
+
+.cellListData {
 	padding: 5px 5px;
 }
+
 #formSeperator {
 	border-style: solid;
 	border-width: 1px;
 }
+
 #newListForm {
 	margin-top: 15px;
 }
+
 input[type=text] {
 	border-color: #f3f7dd;
 	background-color: #f3f7dd;
@@ -94,6 +112,7 @@ input[type=text] {
 td > input[type=text] {
 	width: 95%;
 }
+
 td.corner-symbol {
 	font-size: 20px;
 	border-style: solid;
@@ -105,13 +124,16 @@ td.corner-symbol {
 	vertical-align: center;
 	border-top-width: 2px;
 }
+
 input[type=submit].toggleBtn {
 	margin-bottom: 20px;
 }
+
 .tab-selector {
 	padding-left: 0px;
 	margin-bottom: 0px;
 }
+
 .tab-selector > li{
 	border-style: solid;
 	border-width: 1px;
@@ -120,14 +142,32 @@ input[type=submit].toggleBtn {
 	display: inline;
 	background-color: var(--tab-main-tab-color);
 }
+
 .tab-selector > li.active {
 	background-color: #e4fca5;
 }
+
 .tab {
 	padding: 30px 30px 30px 30px;
 	border-width: 1px;
 	border-style: solid;
 	background-color: var(--tab-main-tab-color);
 	border-radius: 0px 6px 6px 6px;
+}
+
+.ng-valid.ng-dirty {
+	border-color: #78FA89
+}
+
+.bar {
+  fill: blue;
+}
+
+.bar:hover {
+  fill: blue;
+}
+
+.axis--x path {
+  display: none;
 }
 

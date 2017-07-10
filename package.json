@@ -25,10 +25,28 @@
     "@uirouter/angularjs": "^1.0.3",
     "angular": "^1.6.4",
     "angular-mocks": "^1.6.4",
+    "del": "^3.0.0",
+    "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
+    "gulp-angular-embed-templates": "^2.3.0",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-clean-css": "^3.4.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlhint": "^0.3.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-inject": "^4.2.0",
     "gulp-jasmine": "^2.4.2",
     "gulp-jshint": "^2.0.4",
+    "gulp-jsonminify": "^1.0.0",
     "gulp-karma": "0.0.5",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-ng-html2js": "^0.2.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "htmlhint": "^0.9.13",
     "jasmine": "^2.6.0",
     "jasmine-core": "^2.6.3",
     "jasmine-local-storage": "^1.0.0",
@@ -37,6 +55,10 @@
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.1.1",
     "karma-jasmine": "^1.1.0",
-    "karma-read-json": "^1.1.0"
+    "karma-read-json": "^1.1.0",
+    "q": "^1.5.0"
+  },
+  "dependencies": {
+    "gulp-json-minify": "^1.2.0"
   }
 }

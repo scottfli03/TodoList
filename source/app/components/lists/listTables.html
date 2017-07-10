@@ -1,5 +1,5 @@
 <div ng-switch="$ctrl.listType">
-	<ul id="lists" ng-switch-when="incomplete">
+	<ul class="lists" ng-switch-when="incomplete">
 		<!-- <div ng-if="($ctrl.list.listItems.length > 0 || $ctrl.list.isNew)"> -->
 		<incomplete-list-form
 			list="list" 
@@ -13,7 +13,7 @@
   	</incomplete-list-form>
 		<!-- </div>			 -->
 	</ul>
-	<ul id="lists" ng-switch-when="completed"> 
+	<ul class="lists" ng-switch-when="completed"> 
 		<completed-list-form
 				list="list"
 				list-type="$ctrl.listType"

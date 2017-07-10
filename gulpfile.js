@@ -1,24 +1,195 @@
 var gulp = require('gulp'),
-    jshint = require('gulp-jshint'),
-    Server = require('karma').Server;
+    gulpPlugins = require('gulp-load-plugins'),
+    es = require('event-stream'),
+    Q = require('q'),
+    del = require('del'),
+    Server = require('karma').Server,
+    // jshint = require('gulp-jshint'),
+    htmlHint = require('gulp-htmlhint'),
+    plugins = gulpPlugins();
+    // uglify = require('gulp-uglify'),
+    // concat = require('gulp-concat'),
+    // htmlmin = require('gulp-htmlmin'),
+    // ngAnnotate = require('gulp-ng-annotate'),
+    // embedTemplates = require('gulp-angular-embed-templates'),
+    // jsonMinify = require('gulp-json-minify'),
+    // cleanCSS = require('gulp-clean-css'),
+    // rename = require('gulp-rename');
 
-gulp.task('default', ['tdd', 'watch'])
+var paths = {
+  prod: './public/',
+  js: ['./source/app/myApp.js',
+    './source/app/components/**/*.js', 
+    '!./source/app/components/**/*spec.js'],
+  mainJS: ['./source/app/myApp.js'],
+  theIndex: './index.html',
+  htmlPartials: ['./source/app/components/**/*.html',
+    '!./source/index.html'],
+  json: './source/assets/JSON/*.json',
+  css: './source/assets/css/styles.css'
+}
+
+// gulp.task('default', ['tests','js','json','css','htmlPartials']);
+
+gulp.task('default', ['build-main-script','build-app-prod','tests']);
 /**
- * Watch for file changes and re-run tests on each change
+ * Run tests once.
  */
-gulp.task('tdd', function (done) {
-  new Server({
-      configFile: __dirname + '/karma.conf.js'
-  }, done).start();
+gulp.task('tests', function (done) {
+  Server.start({
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: true
+  }, function(err) {
+    done(err);
+  });
 });
 
-// Set up jshint task
-gulp.task('jshint', function() {
-  return gulp.src('./source/app/components/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+var pipes = {};
+
+pipes.minifiedFileName = function() {  
+  return plugins.rename(function (path) {
+    path.extname = '.min' + path.extname;
+  });
+};
+// pipe for test
+pipes.test = function (done) {
+  Server.start({
+      configFile: __dirname + '/karma.conf.js',
+      singleRun: true
+  }, function(err) {
+    done(err);
+  })
+};
+// pipes to build scripts
+pipes.validatedAppScripts = function() {
+  return gulp.src(paths.js)
+    .pipe(plugins.angularEmbedTemplates())
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('jshint-stylish'));
+};
+
+pipes.orderedAppScripts = function() {
+  return plugins.angularFilesort();
+};
+
+pipes.builtAppScriptsDev = function() {  
+    return pipes.validatedAppScripts()
+        .pipe(gulp.dest(paths.distDev));
+};
+
+pipes.validatedPartials = function() {  
+  return gulp.src(paths.htmlPartials)
+    .pipe(plugins.htmlhint({'doctype-first': false}))
+    .pipe(plugins.htmlhint.reporter());
+};
+
+pipes.scriptedPartials = function() {  
+  return pipes.validatedPartials()
+    .pipe(plugins.htmlhint.failReporter())
+    .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
+    .pipe(plugins.ngHtml2js({
+      moduleName: "myApp"
+    }));
+};
+
+pipes.builtAppScriptsProd = function() {
+  var scriptedPartials = pipes.scriptedPartials();
+  var validatedAppScripts = pipes.validatedAppScripts();
+
+  return es.merge(scriptedPartials, validatedAppScripts)
+    // .pipe(pipes.orderedAppScripts())
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.concat('app.min.js'))
+    .pipe(plugins.uglify({mangle: false}))
+    .pipe(plugins.sourcemaps.write())
+    .pipe(gulp.dest(paths.prod));
+};
+
+pipes.builtMainScript = function() {
+  return gulp.src(paths.mainJS)
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter('jshint-stylish'))
+    .pipe(gulp.dest(paths.prod));
+}
+
+pipes.builtStylesProd = function() {  
+  return gulp.src(paths.css)
+    .pipe(plugins.sourcemaps.init())
+      .pipe(plugins.minifyCss())
+    .pipe(plugins.sourcemaps.write())
+    .pipe(pipes.minifiedFileName())
+    .pipe(gulp.dest(paths.prod));
+};
+
+pipes.validatedIndex = function() {
+  return gulp.src(paths.theIndex)
+    .pipe(plugins.htmlhint())
+    .pipe(plugins.htmlhint.reporter())
+    .pipe(plugins.angularEmbedTemplates());
+};
+
+pipes.builtIndexProd = function() {
+  var appMainScript = pipes.builtMainScript();
+  var appScripts = pipes.builtAppScriptsProd();
+  var appStyles = pipes.builtStylesProd();
+
+  return pipes.validatedIndex()
+    .pipe(gulp.dest(paths.prod)) // write first to get relative path for inject
+    .pipe(plugins.inject(appScripts, {relative: true}))
+    .pipe(plugins.inject(appStyles, {relative: true}))
+    .pipe(plugins.htmlmin({collapseWhitespace: true, removeComments: true}))
+    .pipe(gulp.dest(paths.prod));
+};
+
+pipes.builtAppProd = function() {  
+  return pipes.builtIndexProd();
+};
+
+gulp.task('clean-prod', function() {  
+    var deferred = Q.defer();
+    del(paths.prod, function() {
+        deferred.resolve();
+    });
+    return deferred.promise;
 });
-// Add watchers to all js file in any folders in the components directory.
-gulp.task('watch', function() {
-  gulp.watch('./source/app/components/**/*.js', ['jshint']);
+
+gulp.task('validate-partials', pipes.validatedPartials);
+
+gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
+
+gulp.task('build-app-prod', pipes.builtAppProd);
+
+gulp.task('build-main-script', pipes.builtMainScript);
+
+// gulp.task('js', function() {
+//   return gulp.src(paths.js)
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('jshint-stylish'))
+//     .pipe(embedTemplates())
+//     .pipe(ngAnnotate())
+//     .pipe(uglify())
+//     .pipe(concat('app.js'))
+//     .pipe(gulp.dest(paths.prod));
+// });
+
+// gulp.task('htmlPartials', function() {
+//   return gulp.src(paths.htmlPartials)
+//     .pipe(htmlHint())
+//     .pipe(htmlmin({collapseWhitespace: true}))
+//     .pipe(gulp.dest(paths.prod));
+// });
+
+gulp.task('json', function() {
+  return gulp.src(paths.json)
+    .pipe(jsonMinify())
+    .pipe(concat('all.json'))
+    .pipe(gulp.dest(paths.prod));
 });
+
+// gulp.task('css', function() {
+//   return gulp.src(paths.css)
+//     .pipe(cleanCSS({compatibility: 'ie8'}))
+//     .pipe(concat('allCSS.css'))
+//     .pipe(gulp.dest(paths.prod));
+// });
+

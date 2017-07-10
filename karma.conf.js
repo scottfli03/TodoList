@@ -19,6 +19,7 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       'node_modules/ngstorage/ngStorage.js',
       'node_modules/karma-read-json/karma-read-json.js',
+      'source/app/myApp.js',
       'source/app/components/**/*.js',
       {pattern: 'source/assets/JSON/*.json', watched: true, served: true, included: false}
     ],

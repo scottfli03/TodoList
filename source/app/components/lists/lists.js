@@ -1,5 +1,5 @@
-angular.module("myApp",['ngStorage']).component('listApp', {
-	controller: function($scope, $http, $localStorage) {
+angular.module("listsMod",['ngStorage']).component('listApp', {
+	controller: ['$scope', '$http', '$localStorage', function($scope, $http, $localStorage) {
 		var self = this;
 		// delete $localStorage.lists;
 		self.getLists = function() {
@@ -91,15 +91,15 @@ angular.module("myApp",['ngStorage']).component('listApp', {
 		if (typeof $localStorage.lists !== "undefined") {
 			self.loadListData();
 		}
-  },
-	templateUrl: 'source/app/components/lists/listApp.html',
+  }],
+	templateUrl: 'listApp.html',
 	bindings: {
 		listType: '@'
 	}
 });
 
 //Views
-angular.module("myApp").component('listTables', {
+angular.module("listsMod").component('listTables', {
 	bindings: {
 		lists: '<',
 		incompleteFilter: '&',
@@ -110,10 +110,10 @@ angular.module("myApp").component('listTables', {
 		toggleCompleted: '&',
 		listType: '<'
 	},
-	templateUrl: 'source/app/components/lists/listTables.html'
+	templateUrl: 'listTables.html'
 });
 
-angular.module("myApp").component('incompleteListForm', {
+angular.module("listsMod").component('incompleteListForm', {
 	bindings: {
 		list: '<',
 		incompleteFilter: '&',
@@ -124,10 +124,10 @@ angular.module("myApp").component('incompleteListForm', {
 		toggleCompleted: '&',
 		listType: '<'
   },
-  templateUrl: 'source/app/components/lists/incompleteListForm.html'
+  templateUrl: 'incompleteListForm.html'
 });
 
-angular.module("myApp").component('completedListForm', {
+angular.module("listsMod").component('completedListForm', {
 	bindings: {
 		list: '<',
 		addListItem: '&',
@@ -137,24 +137,14 @@ angular.module("myApp").component('completedListForm', {
 		toggleCompleted: '&',
 		listType: '<'
   },
-  templateUrl: 'source/app/components/lists/completedListForm.html'
+  templateUrl: 'completedListForm.html'
 });
 
-angular.module("myApp").component('listItemToolTable', {
-	bindings: {
-		addListItem: '&',
-		toggleCompleted: '&',
-		list: '<',
-		listType: '<'
-	},
-	templateUrl: 'source/app/components/lists/listItemToolTable.html'
-});
-
-angular.module("myApp").component('newListForm', {
+angular.module("listsMod").component('newListForm', {
 	bindings: {
 		addList: '&'
 	},
-	templateUrl: 'source/app/components/lists/newListForm.html'
+	templateUrl: 'newListForm.html'
 });
 
 

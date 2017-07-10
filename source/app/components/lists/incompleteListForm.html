@@ -4,7 +4,7 @@
     <input type="submit" 
       name="btnDelete" 
       ng-click="$ctrl.removeList()($ctrl.list)" 
-      value="Delete List"/ >
+      value="Delete List" />
     <table class="listTable">
       <tr class="listTR">
         <th class="listTH">&#10003;</th>
@@ -12,7 +12,7 @@
         <th class="listTH">Description</th>
         <th class="listTH">Remove</th>
       </tr>
-      <tr id="list" 
+      <tr class="list" 
         ng-repeat="listItem in $ctrl.list.listItems" 
         ng-hide="listItem.completed===true">
         <td class="checkCol">
@@ -22,10 +22,10 @@
             ng-model="listItem.isSelected"
             ng-click="$ctrl.updateListItem()($ctrl.list, listItem)" />
         </td>
-        <td class="listTD"><label id="cellListData">{{listItem.title}}</label></td>
-        <td class="listTD"><label id="cellListData">{{listItem.description}}</label></td>
+        <td class="listTD"><label class="cellListData">{{listItem.title}}</label></td>
+        <td class="listTD"><label class="cellListData">{{listItem.description}}</label></td>
         <td class="listTD">
-          <a href ng-click="$ctrl.removeListItem()($ctrl.list, listItem)" />remove</a>
+          <a href ng-click="$ctrl.removeListItem()($ctrl.list, listItem)">remove</a>
         </td>
       </tr>
       <tr>
@@ -40,6 +40,7 @@
           <input type="submit"
             class="newItemBtn"
             name="btnNewItem" 
+            ng-disabled="listSetForm.$invalid"
             ng-click="$ctrl.addListItem()($ctrl.list, newItem)" />
         </td>
       </tr>
@@ -48,8 +49,12 @@
   <input type="submit" 
     name="setCompletedBtn"
     class="toggleBtn"  
-    ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)"
+    ng-click="$ctrl.toggleCompleted()($ctrl.listType, $ctrl.list)" 
     value="Move to Completed" />
+  <span class="error-notification" 
+    ng-if="listSetForm.txtTitle.$invalid && listSetForm.txtTitle.$dirty || listSetForm.txtDesc.$invalid && listSetForm.txtDesc.$dirty">
+    Please include a valid title and description.
+  </span>
 </form>
 <!-- <list-item-tool-table 
   list-type="$ctrl.listType"
