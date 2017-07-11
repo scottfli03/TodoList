@@ -4,7 +4,7 @@ angular.module("listsMod",['ngStorage']).component('listApp', {
 		// delete $localStorage.lists;
 		self.getLists = function() {
 			if (typeof $localStorage.lists === "undefined") {
-				$http.get('assets/JSON/lists.json').then(function(res){
+				$http.get('lists.json').then(function(res){
 					console.log("Attempting to access data.");
 		  		self.lists = res.data;
 		  		self.saveListData();           

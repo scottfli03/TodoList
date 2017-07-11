@@ -125,7 +125,12 @@ pipes.builtStylesProd = function() {
 pipes.builtCsvProd = function() {
   return gulp.src(paths.csv)
     .pipe(gulp.dest(paths.prod));
-}
+};
+
+pipes.builtJson = function() {
+  return gulp.src(paths.json)
+    .pipe(gulp.dest(paths.prod));
+};
 
 pipes.validatedIndex = function() {
   return gulp.src(paths.theIndex)
@@ -139,6 +144,7 @@ pipes.builtIndexProd = function() {
   var appScripts = pipes.builtAppScriptsProd();
   var appStyles = pipes.builtStylesProd();
   var appData = pipes.builtCsvProd();
+  var appJSON = pipes.builtJson();
 
   return pipes.validatedIndex()
     .pipe(gulp.dest(paths.prod)) // write first to get relative path for inject
@@ -167,36 +173,4 @@ gulp.task('clean-build-app-prod', ['clean-prod'], pipes.builtAppProd);
 gulp.task('build-app-prod', pipes.builtAppProd);
 
 gulp.task('build-main-script', pipes.builtMainScript);
-
-// gulp.task('js', function() {
-//   return gulp.src(paths.js)
-//     .pipe(jshint())
-//     .pipe(jshint.reporter('jshint-stylish'))
-//     .pipe(embedTemplates())
-//     .pipe(ngAnnotate())
-//     .pipe(uglify())
-//     .pipe(concat('app.js'))
-//     .pipe(gulp.dest(paths.prod));
-// });
-
-// gulp.task('htmlPartials', function() {
-//   return gulp.src(paths.htmlPartials)
-//     .pipe(htmlHint())
-//     .pipe(htmlmin({collapseWhitespace: true}))
-//     .pipe(gulp.dest(paths.prod));
-// });
-
-gulp.task('json', function() {
-  return gulp.src(paths.json)
-    .pipe(jsonMinify())
-    .pipe(concat('all.json'))
-    .pipe(gulp.dest(paths.prod));
-});
-
-// gulp.task('css', function() {
-//   return gulp.src(paths.css)
-//     .pipe(cleanCSS({compatibility: 'ie8'}))
-//     .pipe(concat('allCSS.css'))
-//     .pipe(gulp.dest(paths.prod));
-// });
 
