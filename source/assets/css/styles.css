@@ -145,10 +145,12 @@ input[type=submit].toggleBtn {
 
 .tab-selector > li.active {
 	background-color: #e4fca5;
+	border-bottom: thick solid #e4fca5;
 }
 
 .tab {
 	padding: 30px 30px 30px 30px;
+	margin-top: 0px;
 	border-width: 1px;
 	border-style: solid;
 	background-color: var(--tab-main-tab-color);

@@ -7,12 +7,12 @@ angular.module("graphicDisplayMod",[]).component('graphicDisplay', {
   }
 });
 
-angular.module("graphicDisplayMod").controller('graphicDisplayCtrl', ['$scope', '$timeout', 
+angular.module("graphicDisplayMod").controller('graphicDisplayCtrl', ['$scope', '$timeout',
   function($scope, $timeout) {
-  
+
   var self = this;
-  
-    d3.csv("ILWdm1.csv", function(d) {
+
+    d3.csv("/public/ILWdm1.csv", function(d) {
       d.result = +d.result;
       return d;
     }, function(error, data) {
@@ -61,10 +61,10 @@ angular.module("graphicDisplayMod").controller('graphicDisplayCtrl', ['$scope', 
           .attr("x", function(d) { return x(d.column); })
           .attr("y", function(d) { return y(d.result); })
           .attr("width", x.bandwidth())
-          .attr("height", function(d) { 
-            return height - y(d.result); 
-          }); 
+          .attr("height", function(d) {
+            return height - y(d.result);
+          });
       });
     });
-  
+
 }]);
